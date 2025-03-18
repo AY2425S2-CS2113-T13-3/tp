@@ -29,12 +29,22 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("seedu.duke.LeBook")
 }
 
 shadowJar {
     archiveBaseName.set("duke")
     archiveClassifier.set("")
+}
+
+tasks.named('runShadow', JavaExec) {
+    dependsOn shadowJar
+    group = "application"
+    description = "Runs the shadow JAR"
+    classpath = files(shadowJar.archiveFile)
+    mainClass.set("seedu.duke.LeBook")  // Ensure this matches the package name
+    standardInput = System.in
+    enableAssertions = true
 }
 
 checkstyle {
