@@ -6,7 +6,7 @@ LeBook is a straightforward book management application that runs on the command
 ## Quick Start
 - Ensure you have Java 17 installed
 - Download the latest LeBook.jar from the releases page
-- Run the application using: `java -jar tp.jar`
+- Run the application using: `java -jar LeBook.jar`
 
 ## Features
 
