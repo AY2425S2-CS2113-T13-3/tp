@@ -15,7 +15,7 @@ public class ListShelfCommand extends Command{
     }
 
     @Override
-    public void execute(Library library, Ui ui, Storage storage) throws LeBookException {
+    public void execute(Library library, Ui ui, Storage storage, MemberManager membermanager) throws LeBookException {
         assert library != null : "BookManager should not be null";
         assert ui != null : "Ui should not be null";
         assert storage != null : "Storage should not be null";
