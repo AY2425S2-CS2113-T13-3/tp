@@ -24,9 +24,10 @@ public class AddCommand extends Command {
         assert title != null : "Title cannot be null";
         assert author != null : "Author cannot be null";
         String responseForCatalogue = library.addNewBookToCatalogue(title, author, genre);
+
         ui.printWithSeparator(responseForCatalogue);
         String responseForShelf = library.addNewBookToShelf(title, author, genre);
         ui.printWithSeparator(responseForShelf);
-        //storage.writeToFile(library.getBooks());
+        storage.writeToFile(library.getBooks());
     }
 }

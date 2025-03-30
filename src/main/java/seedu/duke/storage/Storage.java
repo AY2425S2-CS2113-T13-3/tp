@@ -12,20 +12,26 @@ import java.io.FileWriter;
 import java.time.LocalDate;
 
 public class Storage {
-    private static String filePath;
-
     private static final String SPLIT_REGEX = "\\|";
+    private static final String DIRECTORY_NAME = "data";
 
     private static final int BOOK_TITLE_INDEX = 0;
     private static final int BOOK_AUTHOR_INDEX = 1;
     private static final int BOOK_STATUS_INDEX = 2;
     private static final int BOOK_DUE_DATE_INDEX = 3;
 
+    private static Storage instance; // Singleton instance
+    private final String filePath;   // Instance variable (not static)
 
-    private static final String DIRECTORY_NAME = "data";
+    private Storage(String path) {
+        this.filePath = path;
+    }
 
-    public Storage(String path) {
-        filePath = path;
+    public static Storage getInstance(String path) {
+        if (instance == null) {
+            instance = new Storage(path);
+        }
+        return instance;
     }
 
     public List<Book> loadFileContents() {

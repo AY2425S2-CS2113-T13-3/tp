@@ -97,6 +97,7 @@ public class UiTest {
                 5. return BOOK_NUMBER          - Return a borrowed book.
                 6. bye                         - Exit the program.
                 7. help                        - Show this help menu.
+                8. shelf SHELF/GENRE/NUMBER    - Lists a particular shelf of specified genre.
                 -------------------
                 Genres:
                   > romance

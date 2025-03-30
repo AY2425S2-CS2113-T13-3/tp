@@ -9,6 +9,7 @@ import seedu.duke.shelving.shelves.RomanceShelves;
 import seedu.duke.shelving.shelves.SciFiShelves;
 import seedu.duke.exception.SectionFullException;
 
+
 public class ShelvesManager {
     private static final String ROMANCE = "romance";
     private static final String ADVENTURE = "adventure";
@@ -25,7 +26,6 @@ public class ShelvesManager {
     private static final String MYSTERY_ID = "MY";
     private static final String NONFICTION_ID = "NF";
     private static final String SCIFI_ID = "SCIF";
-
 
     private final RomanceShelves romanceShelves;
     private final AdventureShelves adventureShelves;
@@ -94,7 +94,7 @@ public class ShelvesManager {
             case SCIFI:
                 return sciFiShelves.addBookToSection(title, author);
             default:
-                return "";
+                break;
             }
         } catch (SectionFullException e) {
             System.out.println(e);
@@ -102,11 +102,26 @@ public class ShelvesManager {
         return "Added";
     }
 
-    public void deleteBook(String bookID) {
+
+    //@@author Deanson Choo
+    /**
+     * 'Deletes' a book from the appropriate shelf using its unique book ID.
+     * Book is replaced with a dummy book
+     * <p>
+     * The book ID is expected to follow the format {@code GENRE-ID-SLOT}, e.g., {@code R-0-1}.
+     * This method extracts the shelf genre ID, shelf number, and slot number from the book ID,
+     * and delegates the deletion to the corresponding shelf section.
+     *
+     * @param bookID The unique ID of the book to delete, in the format {@code GENRE-ID-SLOT}.
+     */
+    public void deleteBook(String bookID){
         String[] parts = bookID.split("-");
         String shelfID = parts[0];
+        assert shelfID != null;
         int shelfNum = Integer.parseInt(parts[1]);
+        assert shelfNum >= 0 && shelfNum < 5;
         int slotNum = Integer.parseInt(parts[2]);
+        assert slotNum >= 0;
         switch (shelfID) {
         case ROMANCE_ID:
             romanceShelves.deleteBookFromSection(shelfNum, slotNum);
@@ -132,6 +147,29 @@ public class ShelvesManager {
         default:
             break;
         }
+    }
+
+    //@@author WayneCh0y
+    public String getBookId(String genre) {
+        switch (genre) {
+        case ROMANCE:
+            return romanceShelves.getBookID();
+        case ADVENTURE:
+            return adventureShelves.getBookID();
+        case ACTION:
+            return actionShelves.getBookID();
+        case HORROR:
+            return horrorShelves.getBookID();
+        case MYSTERY:
+            return mysteryShelves.getBookID();
+        case NONFICTION:
+            return nonFictionShelves.getBookID();
+        case SCIFI:
+            return sciFiShelves.getBookID();
+        default:
+            break;
+        }
+        return "No Book ID found!";
     }
 
 }

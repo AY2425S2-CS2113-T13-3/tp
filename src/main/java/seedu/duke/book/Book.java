@@ -62,7 +62,7 @@ public class Book {
      */
     public String toFileFormat() {
         return title + " | " + author + " | " + (isBorrowed ? 1 : 0) +
-                (returnDueDate != null ? " | " + returnDueDate : "");
+                (returnDueDate != null ? " | " + returnDueDate : "") + " | " + bookID;
     }
 
     public boolean isOverdue() {

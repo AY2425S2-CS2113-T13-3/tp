@@ -3,6 +3,8 @@ package seedu.duke.shelf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import seedu.duke.shelving.shelves.Shelf;
 import seedu.duke.shelving.shelves.Shelves;
 import seedu.duke.book.Book;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author Deanson Choo
 public class ShelvesTest {
 
     private Shelves shelves;
@@ -64,5 +67,25 @@ public class ShelvesTest {
         assertEquals("duMmy", book.getTitle());
         assertEquals("duMmy", book.getAuthor());
         assertEquals(1, booksNum);
+    }
+
+    @Test
+    public void testDeleteBookInvalidShelfNum() {
+        try {
+            shelves.deleteBookFromSection(5,0);
+            fail();
+        } catch (AssertionError e) {
+            assertEquals("Invalid Shelf Number!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testDeleteBookInvalidSlotNum() {
+        try {
+            shelves.deleteBookFromSection(0,-1);
+            fail();
+        } catch (AssertionError e) {
+            assertEquals("Invalid bookIndex!", e.getMessage());
+        }
     }
 }

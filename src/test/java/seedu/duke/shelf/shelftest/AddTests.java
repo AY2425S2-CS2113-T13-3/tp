@@ -20,12 +20,14 @@ public class AddTests {
     private ShelvesManager shelves;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
+    //@@author WayneCh0y
     @BeforeEach
     public void setUp() {
         shelf = new Shelf(1, "SCIF");
         shelves = new ShelvesManager();
     }
 
+    //@@author WayneCh0y
     @Test
     public void addBookToShelf_validInput_addsBookAndUpdatesCount() {
         String result = shelf.addBookToShelf("The Hobbit", "J.R.R. Tolkien");
@@ -36,6 +38,7 @@ public class AddTests {
         assertFalse(shelf.isFull());
     }
 
+    //@@author WayneCh0y
     @Test
     public void addBookToShelf_shelfFull_returnsErrorMessage() {
         // Fill the shelf to max capacity
@@ -48,6 +51,7 @@ public class AddTests {
         assertTrue(shelf.isFull());
     }
 
+    //@@author WayneCh0y
     @Test
     public void addBookToShelf_setsCorrectBookId() {
         shelf.addBookToShelf("Dune", "Frank Herbert");
@@ -56,6 +60,7 @@ public class AddTests {
         assertEquals("SCIF-1-0", addedBook.getBookID());
     }
 
+    //@@author WayneCh0y
     @Test
     public void addBookToShelf_bookIndexZero_worksCorrectly() {
         shelf.addBookToShelf("1984", "George Orwell");
@@ -64,6 +69,7 @@ public class AddTests {
         assertEquals("SCIF-1-0", addedBook.getBookID());
     }
 
+    //@@author WayneCh0y
     @Test
     public void addMultipleBooksToShelf() {
         shelf.addBookToShelf("Harry Potter", "J.K Rowling");
@@ -76,6 +82,7 @@ public class AddTests {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    //@@author WayneCh0y
     @Test
     public void addBookUsingShelvesManager() {
         String result = shelves.addBook("Romeo and Juliet", "William Shakespeare", "romance");

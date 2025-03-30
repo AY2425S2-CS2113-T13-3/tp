@@ -4,10 +4,15 @@ import java.util.Scanner;
 
 
 public class Ui {
+    private static final Ui uiInstance = new Ui();
     private final Scanner scanner;
 
-    public Ui() {
+    private Ui() {
         this.scanner = new Scanner(System.in);
+    }
+
+    public static Ui getUiInstance() {
+        return uiInstance;
     }
 
     public String readCommand() {
@@ -30,6 +35,7 @@ public class Ui {
                 5. return BOOK_NUMBER          - Return a borrowed book.
                 6. bye                         - Exit the program.
                 7. help                        - Show this help menu.
+                8. shelf SHELF/GENRE/NUMBER    - Lists a particular shelf of specified genre.
                 -------------------
                 Genres:
                   > romance

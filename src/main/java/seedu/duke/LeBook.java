@@ -22,10 +22,10 @@ public class LeBook {
     public LeBook(String filePath) {
         assert filePath != null && !filePath.trim().isEmpty() : "File path cannot be null or empty";
 
-        ui = new Ui();
-        storage = new Storage(filePath);
+        ui = Ui.getUiInstance();
+        storage = Storage.getInstance(filePath);
         memberManager = new MemberManager();
-        library = new Library(storage.loadFileContents());
+        library = Library.getTheOneLibrary(storage.loadFileContents());
 
         // Assertions to check if critical components are initialized
         assert ui != null : "UI instance should not be null";

@@ -56,14 +56,13 @@ public class Shelves {
         return false;
     }
 
-    /**
-     * Generates the full shelf number (identifier + index).
-     *
-     * @param index The shelf index (0–4).
-     * @return The formatted shelf number.
-     */
-    public String getShelfNumber(int index) {
-        return identifier + String.valueOf(index);
+    public String getBookID() {
+        for (int shelfIndex = 0; shelfIndex < 5; shelfIndex++) {
+            if (!shelves[shelfIndex].isFull()) {
+                return shelves[shelfIndex].getBookId();
+            }
+        }
+        return "All shelves are Full!";
     }
 
 
@@ -91,7 +90,17 @@ public class Shelves {
         }
         return NO_SECTION_AVAILABLE;
     }
+
+    //@@author Deanson Choo
+    /**
+     * 'Deletes' a book from the appropriate shelf using its unique slotNum and shelfNum
+     * by replacing the book with a dummy book
+     * @param shelfNum the index of the shelf where the book is located.
+     * @param slotNum the index of the book in the list of books in the shelf
+     */
     public void deleteBookFromSection(int shelfNum, int slotNum) {
+        assert shelfNum >= 0 && shelfNum < 5: "Invalid Shelf Number!";
+        assert slotNum >= 0: "Invalid bookIndex!";
         shelves[shelfNum].deleteBookFromShelf(slotNum);
     }
 }

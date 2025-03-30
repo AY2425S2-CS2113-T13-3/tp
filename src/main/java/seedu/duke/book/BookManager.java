@@ -80,6 +80,7 @@ public class BookManager {
         Book newBook = new Book(title, author);
         int oldSize = books.size();
         books.add(newBook);
+        newBook.setBookID(bookID);
 
         // Assert that the book was successfully added
         assert books.size() == oldSize + 1 : "Book size should increase by 1 after adding";

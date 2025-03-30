@@ -137,10 +137,23 @@ public class Shelf {
                 + " books on the Shelf: " + getShelfIdentifier(bookIndex);
     }
 
+    //@@author Deanson Choo
+    /**
+     * Deletes a book from the shelf at the specified slot number.
+     * <p>
+     * This method replaces the book at the given slot with a placeholder book titled "duMmy"
+     * and decreases the count of books currently on the shelf.
+     */
     public void deleteBookFromShelf(int slotNum) {
-        Book temp = new Book("duMmy", "duMmy");
+        Book temp = new Book("duMmY", "duMmY");
+        assert slotNum >= 0 && slotNum < booksCurrentlyOnShelf: "Invalid bookIndex!";
         shelfBooks.set(slotNum, temp);
         booksCurrentlyOnShelf -= 1;
+    }
+
+    public String getBookId() {
+        int bookIndex = getSuitableIndex();
+        return getShelfIdentifier(bookIndex);
     }
 
 }

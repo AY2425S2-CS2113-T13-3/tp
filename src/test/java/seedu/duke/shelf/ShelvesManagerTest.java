@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author Deanson Choo
 public class ShelvesManagerTest {
 
     private ShelvesManager shelvesManager;
@@ -33,8 +34,11 @@ public class ShelvesManagerTest {
 
         Field shelfField = Shelf.class.getDeclaredField("shelfBooks");
         shelfField.setAccessible(true);
-
         shelfField.set(shelf0, books);
+
+        Field countField = Shelf.class.getDeclaredField("booksCurrentlyOnShelf");
+        countField.setAccessible(true);
+        countField.set(shelf0, 2);
 
         Field shelvesField = Shelves.class.getDeclaredField("shelves");
         shelvesField.setAccessible(true);
@@ -48,7 +52,7 @@ public class ShelvesManagerTest {
     }
 
     @Test
-    public void testDeleteBook_deletesCorrectly() throws NoSuchFieldException, IllegalAccessException {
+    public void testDeleteBook_deletesCorrectly() throws NoSuchFieldException, IllegalAccessException{
         shelvesManager.deleteBook("R-0-1");
 
         Field romanceShelvesField = ShelvesManager.class.getDeclaredField("romanceShelves");
@@ -71,4 +75,6 @@ public class ShelvesManagerTest {
         assertEquals("duMmy", book.getTitle(), "The book should be replaced by a dummy.");
         assertEquals("duMmy", book.getAuthor(), "The book author should be replaced by a dummy.");
     }
+
+
 }

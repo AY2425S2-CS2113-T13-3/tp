@@ -18,8 +18,6 @@ public class DeleteCommand extends Command {
         assert library != null : "BookManager should not be null";
         assert ui != null : "Ui should not be null";
         assert storage != null : "Storage should not be null";
-        //assert bookIndex != null : "Book Index cannot be null";
-
         String response = library.deleteBook(bookIndex);
         ui.printWithSeparator(response);
         storage.writeToFile(library.getBooks());

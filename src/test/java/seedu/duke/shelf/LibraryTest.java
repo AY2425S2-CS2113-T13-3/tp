@@ -17,6 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author Deanson Choo
 public class LibraryTest {
 
     private Library library;
@@ -41,6 +42,10 @@ public class LibraryTest {
         shelfField.setAccessible(true);
 
         shelfField.set(shelf0, catalogBooks);
+
+        Field countField = Shelf.class.getDeclaredField("booksCurrentlyOnShelf");
+        countField.setAccessible(true);
+        countField.set(shelf0, 1);
 
         Field shelvesField = Shelves.class.getDeclaredField("shelves");
         shelvesField.setAccessible(true);
@@ -89,7 +94,7 @@ public class LibraryTest {
         assertEquals("duMmy", bookAfterDelete.getAuthor(), "Author should be dummy after deletion");
     }
     @Test
-    public void testDeleteBook_noExist() throws NoSuchFieldException, IllegalAccessException {
+    public void testDeleteBook_noExist() {
 
         String result = library.deleteBook(1);
         System.out.println(result);
